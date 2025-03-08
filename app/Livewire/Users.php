@@ -12,7 +12,6 @@ class Users extends Component
     {
         $usersCount = User::query()->count();
         $users = User::all();
-        $users = User::query()->find(1);
         return view('livewire.users', [
             'usersCount' => $usersCount,
             'users' => $users??Collection::make([]),
