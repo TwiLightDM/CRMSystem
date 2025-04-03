@@ -25,3 +25,7 @@ Route::middleware('auth:sanctum')->get('/lead', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/partner', function (Request $request) {
     return $request->partner();
 });
+
+Route::middleware('auth:sanctum')->get('/source', function (Request $request) {
+    return $request->source();
+});

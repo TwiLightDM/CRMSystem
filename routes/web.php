@@ -29,4 +29,6 @@ Route::get('leads', \App\Livewire\Leads::class);
 
 Route::get('partners', \App\Livewire\Partners::class);
 
+Route::get('sources', \App\Livewire\Sources::class);
+
 require __DIR__.'/auth.php';
