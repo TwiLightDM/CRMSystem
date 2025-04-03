@@ -13,6 +13,7 @@ class Partners extends Component
 
     public function render()
     {
+
         return view('livewire.partners', [
             'partners' => Partner::all(),
         ]);
@@ -20,17 +21,20 @@ class Partners extends Component
 
     public function createPartner()
     {
+
         $validated = $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:partners,email',
             'phone' => 'nullable|string|max:20',
             'description' => 'nullable|string',
-            'status' => 'required|string|in:сотрудничаем, прекратили сотрудничество',
+            'status' => 'required|string',
         ]);
+
+
 
         $validated['date_of_cooperation'] = now();
 
-        Partner::create($validated);
+        $partners = Partner::create($validated);
 
         $this->resetFields();
         session()->flash('message', 'Партнер успешно добавлен.');
@@ -39,7 +43,7 @@ class Partners extends Component
     public function editPartner($id)
     {
         $partner = Partner::withTrashed()->findOrFail($id);
-        $this->PartnerId = $partner->id;
+        $this->partnerId = $partner->id;
         $this->name = $partner->name;
         $this->email = $partner->email;
         $this->phone = $partner->phone;
