@@ -20,9 +20,8 @@ class Sources extends Component
     public function createSource()
     {
         $validated = $this->validate([
-            'type' => 'required|string|in:соцсети,рекомендация знакомых,поиск в браузере,наружная реклама,СМИ или блогеры',
+            'type' => "required|string|max:255|unique:sources,type,{$this->sourceId}",
         ]);
-
         Source::create($validated);
 
         $this->resetFields();
@@ -40,7 +39,7 @@ class Sources extends Component
     public function updateSource()
     {
         $validated = $this->validate([
-            'type' => 'required|string|in:соцсети,рекомендация знакомых,поиск в браузере,наружная реклама,СМИ или блогеры',
+            'type' => 'required|string|max:255',
         ]);
 
         $source = Source::withTrashed()->findOrFail($this->sourceId);
